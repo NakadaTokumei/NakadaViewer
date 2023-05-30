@@ -62,7 +62,7 @@ class WebtoonDownloader:
 
 
             for index in range(episode_list.__len__()):
-                download_path = self.title + '/' + episode_list[index].text
+                download_path = downloaded_folder + self.title + '/' + episode_list[index].text
 
                 if not os.path.exists(download_path):
                     os.mkdir(download_path)
@@ -105,7 +105,7 @@ class WebtoonDownloader:
         images = parse.find_all('img', {'id' : re.compile('content_image')})
 
         for image in images:
-            self.fileDownload(image['src'], downloaded_folder + title_name)
+            self.fileDownload(image['src'], title_name)
 
 
     def fileDownload(self, image_link : str, folder : str = '') -> None:
