@@ -9,9 +9,14 @@ import os
 import requests
 
 main_url = "https://comic.naver.com"
+downloaded_folder = "Download/"
 
 class WebtoonDownloader:
     def __init__(self, titleId : int) -> None:
+
+        if not os.path.exists(downloaded_folder):
+            os.mkdir(downloaded_folder)
+
         user_data_dir_file = open('user_data_dir.dat', 'r')
         user_data_dir = user_data_dir_file.read()
 
@@ -24,6 +29,7 @@ class WebtoonDownloader:
         self.request_headers = {
             "User-Agent" : "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/113.0.0.0 Safari/537.36"
         }
+
         self.session = webdriver.Chrome(chrome_options=options)
         self.timeout_wait = WebDriverWait(self.session, 5)
         self.getTitle()
@@ -99,7 +105,7 @@ class WebtoonDownloader:
         images = parse.find_all('img', {'id' : re.compile('content_image')})
 
         for image in images:
-            self.fileDownload(image['src'], title_name)
+            self.fileDownload(image['src'], downloaded_folder + title_name)
 
 
     def fileDownload(self, image_link : str, folder : str = '') -> None:
