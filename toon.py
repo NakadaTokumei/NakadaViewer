@@ -1,6 +1,5 @@
 #!/bin/python3
 from Webtoon.Downloader import WebtoonDownloader
-from selenium import webdriver
 import requests
 
 if __name__ == '__main__':
