@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Nakda's episode</title>
+        <meta charset="utf-8"/>
+    </head>
+    <body>
+        <h2>{{webtoon_name}} Episodes</h2>
+        <ul>
+            {% for episode in episodes %}
+             <li>
+                <a href="/{{webtoon_name}}/{{loop.index}}">{{episode}}</a>
+             </li>
+            {% endfor %}
+        </ul>
+    </body>
+</html>

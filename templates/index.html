@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Nakada's Webtoon Viewer</title>
+        <meta charset="utf-8"/>
+    </head>
+    <body>
+        <h1>This is Nakada's webtoon viewer</h1>
+        <h3>Webtoon List</h3>
+        <ul>
+            {% for webtoon in webtoons %}
+                <li><a href="/{{webtoon}}">{{webtoon}}</a></li>
+            {% endfor %}
+        </ul>
+    </body>
+</html>

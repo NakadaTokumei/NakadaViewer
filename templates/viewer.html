@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>{{webtoon_name}}</title>
+        <meta charset="utf-8"/>
+        <style>
+            img {
+                display: block;
+                margin: auto;
+            }
+        </style>
+    </head>
+    <body>
+        <div style="background:#FFFFFF">
+            {% for image in images %}
+                <img src="/static/{{webtoon_name}}/{{episode}}/{{image}}">
+            {% endfor %}
+        </div>
+    </body>
+</html>

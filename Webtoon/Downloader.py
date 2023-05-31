@@ -9,7 +9,7 @@ import os
 import requests
 
 main_url = "https://comic.naver.com"
-downloaded_folder = "Download/"
+downloaded_folder = "static/"
 
 class WebtoonDownloader:
     def __init__(self, titleId : int) -> None:
@@ -39,8 +39,10 @@ class WebtoonDownloader:
         _loop = True
         page=1
 
-        if not os.path.exists(self.title):
-            os.mkdir(self.title)
+        title_path = downloaded_folder + self.title
+
+        if not os.path.exists(title_path):
+            os.mkdir(title_path)
         else:
             return
         
@@ -52,7 +54,7 @@ class WebtoonDownloader:
             True
         )
 
-        # print(self.session.page_source)
+        # print(page_source)
 
         while _loop:
             parse = BeautifulSoup(page_source, features='html.parser')
@@ -62,7 +64,7 @@ class WebtoonDownloader:
 
 
             for index in range(episode_list.__len__()):
-                download_path = downloaded_folder + self.title + '/' + episode_list[index].text
+                download_path = title_path + '/' + episode_list[index].text
 
                 if not os.path.exists(download_path):
                     os.mkdir(download_path)
@@ -122,7 +124,7 @@ class WebtoonDownloader:
         with open(download_file, "wb") as file:
             file.write(image_data)
 
-    def getHtml(self, target_link : str, wait_element_id : str = '', use_wait : bool = False) -> str:
+    def getHtml(self, target_link : str, wait_element_id : str = '', use_wait : bool = False, literal = By.ID) -> str:
         self.session.get(
             target_link
         )
